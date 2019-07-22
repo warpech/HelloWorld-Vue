@@ -13,12 +13,12 @@ namespace HelloWorld
 
         void Handle(Input.SaveTrigger action)
         {
-            Transaction.Commit();
+            AttachedScope.Commit();
         }
 
         void Handle(Input.CancelTrigger action)
         {
-            Transaction.Rollback();
+            AttachedScope.Rollback();
         }
 
         void Handle(Input.NewExpenseTrigger action)

@@ -1,10 +1,36 @@
-# HelloWorld
-Sample Starcounter application that shows how to create an expense tracker that updates in real-time, calculates sums on the fly, and works seamlessly in tandem with other applications.
+# Create a Real Time UI with Starcounter and Vue
 
-You can take the tutorial that explains how to create this application on [docs.starcounter.io](https://docs.starcounter.io/tutorial).
+### Introduction
+By default, Starcounter uses Polymer and WebComponents. In this project, we will rely on Vue to handle user interaction.
+### Before You Start
+This project is a recreation of the complete Starcounter Hello World Tutorial (https://docs.starcounter.io/hello-world-tutorial)
 
-![](./screenshot.png)
+### So how does this work?
 
-## How is this repo maintained?
+#### 1. Set up the Vue project
 
-See the [wiki page](https://github.com/StarcounterSamples/HelloWorld/wiki).
+I have used Vue CLI, a tool explained here: https://cli.vuejs.org/guide/installation.html
+
+I have started with an existing C# project of Starcounter app.
+
+By convention, I want `wwwroot/helloworldclient` to contain the built client-side files. So let's go to the directory that contains `HelloWorld.csproj` and create another subdirectory `helloworldclient` for the Vue project source files:
+
+```
+vue create helloworldclient
+```
+
+For all the questions asked by the CLI tool, press ENTER to accept the defaults.
+
+Configure the Vue builder to respect our source and output directory preference:
+
+```js
+// HelloWorld/helloworldclient/vue.config.js
+module.exports = {
+   publicPath: '/helloworldclient',
+   outputDir: "../wwwroot/helloworldclient"
+}
+```
+
+If all goes well, running `npm run build` in `helloworldclient` should populate the folder `wwwroot/helloworldclient`.
+
+![screenshot](docs/01-npm-run-build.png)

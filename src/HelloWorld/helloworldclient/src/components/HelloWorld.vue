@@ -1,41 +1,47 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="hello" v-if="value">
+    <h1>{{value.FullName}}'s expense list</h1>
+
+    <fieldset>
+        <label>First name:</label>
+        <input v-model="value.FirstName$">
+    </fieldset>
+
+    <fieldset>
+        <label>Last name:</label>
+        <input v-model="value.LastName$">
+    </fieldset>
+
+    <button v-on:click="value.SaveTrigger$ += 1">Save</button>
+    <button v-on:click="value.CancelTrigger$ += 1">Cancel</button>
+
+    <hr>
+
+    <div v-for="(item,i) in value.Expenses" v-bind:key="item"><!-- this is a hack, should be sth like v-bind:key="item.id" -->
+      <Expense v-model="items[i].value" />
+      <!-- note: this might be naive, see https://forum.vuejs.org/t/how-to-use-v-model-inside-the-v-for-loop-in-order-to-access-a-current-object/7764/5 -->
+    </div>
+
+    <button v-on:click="value.NewExpenseTrigger$ += 1">Add new expense</button>
+
+    <hr>
+
+    <h2>Current Balance: {{value.CurrentBalance}}</h2>
+    <button v-on:click="value.DeleteAllTrigger$ += 1">Delete all expenses</button>
   </div>
 </template>
 
 <script>
+import Expense from './Expense.vue'
+
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
-  }
+    value: Object // the name of the prop must be "value" to work with v-model in the parent component
+  },
+  components: {
+    Expense
+  },
 }
 </script>
 

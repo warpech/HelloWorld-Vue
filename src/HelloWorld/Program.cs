@@ -47,7 +47,12 @@ namespace HelloWorld
                     Session.Ensure();
 
                     var person = Db.SQL<Person>("SELECT p FROM Person p").FirstOrDefault();
-                    return new PersonJson { Data = person };
+                    var json = new PersonJson()
+                    {
+                        Data = person
+                    };
+                    Session.Ensure().Store[nameof(PersonJson)] = json;
+                    return json;
                 });
                 var response = new Response()
                 {

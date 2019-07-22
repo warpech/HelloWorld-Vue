@@ -71,3 +71,10 @@ Re-build the Vue app (`cd helloworldclient && npm run build`). The updated files
 When you now start HelloWorld start the app, Starcounter will host the static files and make the app available at http://localhost:8080/helloworldclient/index.html
 
 In browser console, you will see the Palindrom session object.
+
+#### 3. Render UI
+
+The source code of Palindrom Vue demo page: https://github.com/Palindrom/palindrom.github.io/blob/source/public/lab/vue/src/components/HelloWorld.vue shows how to use Vue two-way data binding to connect UI with the Palindrom state object.
+
+
+

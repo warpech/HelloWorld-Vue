@@ -42,13 +42,19 @@ namespace HelloWorld
             
             Handle.GET("/HelloWorld", () =>
             {
-                return Db.Scope(() =>
+                var resource = Db.Scope(() =>
                 {
                     Session.Ensure();
 
                     var person = Db.SQL<Person>("SELECT p FROM Person p").FirstOrDefault();
                     return new PersonJson { Data = person };
                 });
+                var response = new Response()
+                {
+                    Resource = resource,
+                };
+                response.Headers["Location"] = Session.Current.SessionUri;
+                return response;
             });
         }
     }

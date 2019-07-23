@@ -76,5 +76,7 @@ In browser console, you will see the Palindrom session object.
 
 The source code of Palindrom Vue demo page: https://github.com/Palindrom/palindrom.github.io/blob/source/public/lab/vue/src/components/HelloWorld.vue shows how to use Vue two-way data binding to connect UI with the Palindrom state object.
 
+![screenshot](docs/03-ui.gif)
+
 
 

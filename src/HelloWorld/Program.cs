@@ -1,6 +1,7 @@
 ﻿using Starcounter;
 using System.Collections.Generic;
 using System.Linq;
+using Starcounter.XSON.Advanced;
 
 namespace HelloWorld
 {
@@ -52,6 +53,7 @@ namespace HelloWorld
                         Data = person
                     };
                     Session.Ensure().Store[nameof(PersonJson)] = json;
+                    Session.Current.SetClientRoot(json);
                     return json;
                 });
                 var response = new Response()

@@ -33,7 +33,6 @@ namespace HelloWorld
         void Handle(Input.DeleteAllTrigger action)
         {
             Db.SQL("DELETE FROM Expense WHERE Spender = ?", this.Data);
-            this.Expenses.Clear();
         }
     }
 }

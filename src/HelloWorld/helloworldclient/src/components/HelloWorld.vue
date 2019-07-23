@@ -17,8 +17,8 @@
 
     <hr>
 
-    <div v-for="(item,i) in value.Expenses" v-bind:key="item"><!-- this is a hack, should be sth like v-bind:key="item.id" -->
-      <Expense v-model="items[i].value" />
+    <div v-for="(item,i) in value.Expenses" v-bind:key="item.ObjectId">
+      <Expense v-model="value.Expenses[i]" />
       <!-- note: this might be naive, see https://forum.vuejs.org/t/how-to-use-v-model-inside-the-v-for-loop-in-order-to-access-a-current-object/7764/5 -->
     </div>
 

@@ -1,6 +1,8 @@
 <template>
-  <HelloWorld v-model="obj" />
-  <!-- v-model directive has special meaning in Vue. It creates 2-way data binding. See: https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components -->
+  <div class="hello" v-if="obj">
+    <HelloWorld v-model="obj.HelloWorld_0" />
+    <!-- v-model directive has special meaning in Vue. It creates 2-way data binding. See: https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components -->
+  </div>
 </template>
 
 <script>
